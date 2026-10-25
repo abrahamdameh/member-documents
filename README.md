@@ -82,7 +82,12 @@ composer test        # PHPUnit unit tests (Brain Monkey for WordPress functions)
 composer lint        # WordPress Coding Standards + PHP compatibility
 ```
 
-CI runs the tests on PHP 8.1 to 8.4 and checks coding standards on every push. Tagging `v*` builds a release zip in which Dompdf is namespaced under `MemberDocuments\Vendor` with [Strauss](https://github.com/BrianHenryIE/strauss), so it can't clash with another plugin's copy.
+CI runs the tests on PHP 8.1 to 8.4 and checks coding standards on every push.
+
+Tagging `v*` builds the release zip:
+- Dompdf and its dependencies are namespaced under `MemberDocuments\Vendor` with [Strauss](https://github.com/BrianHenryIE/strauss), so they can't clash with another plugin's copy.
+- `php-font-lib` is left unprefixed, because it builds class names at runtime.
+- The packaged build must render a real PDF before the release is published.
 
 ## Licence
 
