@@ -44,6 +44,11 @@
             "packages": [
                 "dompdf/dompdf"
             ],
+            "exclude_from_prefix": {
+                "packages": [
+                    "dompdf/php-font-lib"
+                ]
+            },
             "delete_vendor_packages": true,
             "update_call_sites": [
                 "src"
