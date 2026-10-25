@@ -1,0 +1,5 @@
+/vendor/
+/vendor-prefixed/
+/build/
+/.phpunit.result.cache
+/tools/

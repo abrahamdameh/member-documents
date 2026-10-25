@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<ruleset name="Member Documents">
+	<description>WordPress Coding Standards for Member Documents.</description>
+
+	<file>member-documents.php</file>
+	<file>uninstall.php</file>
+	<file>src</file>
+	<file>templates</file>
+
+	<arg name="extensions" value="php"/>
+	<arg value="sp"/>
+	<arg name="colors"/>
+
+	<config name="minimum_wp_version" value="6.2"/>
+	<config name="testVersion" value="8.1-"/>
+
+	<rule ref="WordPress-Extra"/>
+	<rule ref="WordPress-Docs"/>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="member-documents"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="mdocs"/>
+				<element value="MemberDocuments"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Classes follow PSR-4 (one class per file, named after the class) rather than WordPress's class-*.php file names. -->
+	<rule ref="WordPress.Files.FileName">
+		<exclude-pattern>src/*</exclude-pattern>
+	</rule>
+</ruleset>

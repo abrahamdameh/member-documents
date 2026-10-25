@@ -1,0 +1,41 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          coverage: none
+
+      - name: Install production dependencies
+        run: composer install --no-dev --no-interaction --no-progress --optimize-autoloader
+
+      # Prefix Dompdf and its dependencies into vendor-prefixed/ so the plugin
+      # cannot conflict with another plugin bundling a different version.
+      - name: Prefix bundled libraries
+        run: |
+          curl -sSL -o strauss.phar https://github.com/BrianHenryIE/strauss/releases/latest/download/strauss.phar
+          php strauss.phar
+          rm strauss.phar
+          composer dump-autoload --no-dev --optimize
+
+      - name: Build zip
+        run: |
+          mkdir -p build/member-documents
+          rsync -a --exclude-from=.distignore ./ build/member-documents/
+          cd build && zip -qr member-documents.zip member-documents
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: build/member-documents.zip
