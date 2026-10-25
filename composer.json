@@ -44,7 +44,10 @@
             "packages": [
                 "dompdf/dompdf"
             ],
-            "delete_vendor_packages": true
+            "delete_vendor_packages": true,
+            "update_call_sites": [
+                "src"
+            ]
         }
     },
     "scripts": {

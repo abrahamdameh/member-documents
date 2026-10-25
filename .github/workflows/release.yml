@@ -34,7 +34,23 @@ jobs:
         run: |
           mkdir -p build/member-documents
           rsync -a --exclude-from=.distignore ./ build/member-documents/
-          cd build && zip -qr member-documents.zip member-documents
+
+      # Render a real PDF from the packaged build, so a broken prefixing step
+      # fails the release instead of shipping.
+      - name: Smoke-test the packaged build
+        working-directory: build/member-documents
+        run: |
+          php -r '
+            define("ABSPATH", __DIR__ . "/");
+            require "vendor/autoload.php";
+            require "vendor-prefixed/autoload.php";
+            $pdf = (new MemberDocuments\Pdf\DompdfRenderer())->render("<p>Smoke test</p>");
+            if (strncmp($pdf, "%PDF", 4) !== 0) { fwrite(STDERR, "No PDF produced\n"); exit(1); }
+            echo "PDF OK (", strlen($pdf), " bytes)\n";
+          '
+
+      - name: Zip
+        run: cd build && zip -qr member-documents.zip member-documents
 
       - uses: softprops/action-gh-release@v2
         with:
