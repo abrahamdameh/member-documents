@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Member Documents
- * Plugin URI:        https://github.com/xhebruski/member-documents
+ * Plugin URI:        https://github.com/abrahamdameh/member-documents
  * Description:       Versioned document templates, recorded member acceptance and per-member PDF archives.
  * Version:           1.0.0
  * Requires at least: 6.2

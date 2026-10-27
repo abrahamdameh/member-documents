@@ -1,5 +1,5 @@
 === Member Documents ===
-Contributors: xhebruski
+Contributors: abrahamdameh
 Tags: documents, pdf, membership, agreements, acceptance
 Requires at least: 6.2
 Tested up to: 6.8

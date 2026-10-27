@@ -1,6 +1,6 @@
 # Member Documents
 
-[![CI](https://github.com/xhebruski/member-documents/actions/workflows/ci.yml/badge.svg)](https://github.com/xhebruski/member-documents/actions/workflows/ci.yml)
+[![CI](https://github.com/abrahamdameh/member-documents/actions/workflows/ci.yml/badge.svg)](https://github.com/abrahamdameh/member-documents/actions/workflows/ci.yml)
 
 A WordPress plugin for membership sites that issue documents to members (agreements, notices, policies) and need to prove later exactly what each member received and accepted.
 
